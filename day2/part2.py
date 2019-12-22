@@ -1,3 +1,4 @@
+import copy
 import sys
 
 
@@ -20,9 +21,13 @@ with open("input.txt") as f:
 
 values = values.rstrip().split(",")
 values = [int(value) for value in values]
-values[1] = 12
-values[2] = 2
 
-compute(values)
-
-print(values[0])
+for noun in range(100):
+    for verb in range(100):
+        values[1] = noun
+        values[2] = verb
+        memory = copy.deepcopy(values)
+        compute(memory)
+        if memory[0] == 19690720:
+            print(noun, verb)
+            print(100 * noun + verb)
