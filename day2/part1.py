@@ -1,18 +1,4 @@
-import sys
-
-
-def compute(values):
-    i = 0
-    while values[i] != 99:
-        if values[i] == 1:
-            values[values[i + 3]] = values[values[i + 1]] + values[values[i + 2]]
-            i += 4
-        elif values[i] == 2:
-            values[values[i + 3]] = values[values[i + 1]] * values[values[i + 2]]
-            i += 4
-        else:
-            print(f"Unexpected operand: {values[i]} at position {i}")
-            sys.exit()
+from intcode_computer import Computer
 
 
 with open("input.txt") as f:
@@ -23,6 +9,6 @@ values = [int(value) for value in values]
 values[1] = 12
 values[2] = 2
 
-compute(values)
-
-print(values[0])
+computer = Computer(values)
+computer.run()
+print(computer.intcode[0])
